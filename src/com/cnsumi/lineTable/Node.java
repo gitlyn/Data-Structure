@@ -1,5 +1,7 @@
 package com.cnsumi.lineTable;
 
+import java.util.ArrayList;
+
 public class Node {
 	int data;
 	Node pre;
