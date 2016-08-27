@@ -1,7 +1,5 @@
 package com.cnsumi.lineTable;
 
-import java.util.ArrayList;
-
 public class Node {
 	int data;
 	Node pre;
@@ -12,7 +10,6 @@ public class Node {
 	}
 	
 	public String toString() {
-		
 		return "pre->[" + (pre == null ? "null]\t" : pre.data + "]\t") + "data->[" + this.data + "]\t" + (next == null ? "next->[null]" : "next->[" + next.data + "]"); 
 	}
 }

@@ -15,5 +15,5 @@ public interface List {
 	
 	public boolean deleteAt(int index);
 	
-	public int length();
+	public int count();
 }

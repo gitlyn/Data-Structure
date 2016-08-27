@@ -3,9 +3,9 @@ package com.cnsumi.lineTable;
 public class ArrayList implements List{
 	private static final int DEFAULT_LENGTH = 10;
 	
-	int[] array;
-	int length;
-	int count;
+	private int[] array;
+	private int length;
+	private int count;
 	
 	public ArrayList() {
 		this(DEFAULT_LENGTH);
@@ -40,8 +40,12 @@ public class ArrayList implements List{
 	}
 
 	public int indexOf(int data) {
-		// TODO Auto-generated method stub
-		return 0;
+		for (int i = 0; i < count; i++) {
+			if (array[i]==data) {
+				return i;
+			}
+		}
+		return -1;
 	}
 	
 	public boolean add(int data) {
@@ -60,13 +64,16 @@ public class ArrayList implements List{
 	}
 
 	public boolean deleteAt(int index) {
-		// TODO Auto-generated method stub
-		return false;
+		if (index < 0 || index >= count) return false;
+		for (int i = index; i < count - 1; i++) {
+			array[i] = array[i+1];
+		}
+		count -= 1;
+		return true;
 	}
 
-	public int length() {
-		// TODO Auto-generated method stub
-		return 0;
+	public int count() {
+		return count;
 	}
 	
 	@Override
