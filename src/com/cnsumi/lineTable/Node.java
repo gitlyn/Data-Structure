@@ -9,7 +9,6 @@ public class Node {
 	}
 	
 	public String toString() {
-//		String preString = "pre->[" + (pre == null ? "null]\t" : pre.data + "]\t"); 
 		return "data->[" + this.data + "]\t" + (next == null ? "next->[null]" : "next->[" + next.data + "]"); 
 	}
 }
