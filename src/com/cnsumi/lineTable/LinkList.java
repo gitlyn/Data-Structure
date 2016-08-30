@@ -22,7 +22,13 @@ public class LinkList implements List{
 	}
 
 	public void clearList() {
-		node = null;
+		Node pNode = node;
+		for (int i = 0; i < count; i++) {
+			pNode = node.next;
+			node = null;
+			node = pNode;
+		}
+		count = 0;
 	}
 
 	public int getElem(int index) throws IndexOutOfBoundsException {
@@ -42,16 +48,27 @@ public class LinkList implements List{
 	}
 
 	public int indexOf(int data) {
-		// TODO Auto-generated method stub
-		return 0;
+		Node pNode = node;
+		for (int i = 0; i < count; i++) {
+			if (pNode.data == data) {
+				return i;
+			}
+			pNode = pNode.next;
+		}
+		return -1;
 	}
 
+	public boolean add(int data) {
+		return insertTo(count, data);
+	}
+	
 	public boolean insertTo(int index, int data) {
 		if (index > count || index < 0) return false;
 		count++;
 		if (index == 0) {
 			Node newNode = new Node(data);
-			newNode.next = node;
+			newNode.
+			next = node;
 			node = newNode;
 			return true;
 		}
@@ -66,13 +83,22 @@ public class LinkList implements List{
 	}
 
 	public boolean deleteAt(int index) {
-		// TODO Auto-generated method stub
-		return false;
+		if (index >= count || index < 0) return false;
+		count--;
+		if (index == 0) {
+			node = node.next;
+			return true;
+		}
+		Node pNode = node;
+		for (int i = 0; i < index - 1; i++) {
+			pNode = pNode.next;
+		}
+		pNode.next = pNode.next.next;
+		return true;
 	}
 
 	public int count() {
-		// TODO Auto-generated method stub
-		return 0;
+		return count;
 	}
 	
 	@Override
