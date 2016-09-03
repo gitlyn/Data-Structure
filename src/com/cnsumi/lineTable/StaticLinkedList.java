@@ -3,6 +3,7 @@ package com.cnsumi.lineTable;
 public class StaticLinkedList implements List{
 	Component[] list;
 	int size;
+	int count;
 	public StaticLinkedList(int size) {
 		this.initList(size);
 	}
@@ -13,6 +14,7 @@ public class StaticLinkedList implements List{
 	
 	public void initList(int size) {
 		if (size < 3) return;
+		list = new Component[size];
 		Component lastComponent = new Component();
 		lastComponent.cur = 0;
 		list[size - 1] = lastComponent;
@@ -21,6 +23,7 @@ public class StaticLinkedList implements List{
 			pComponent.cur = i + 1;
 			list[i] = pComponent;
 		}
+		count = 0;
 		this.size = size;
 	}
 
@@ -44,12 +47,25 @@ public class StaticLinkedList implements List{
 	}
 
 	public boolean insertTo(int index, int data) {
-		// TODO Auto-generated method stub
-		return false;
+		if (index > count) return false;
+		if (index < 0 || index >= size - 2) return false;
+		int i = malloc();
+		if (i == 0) return false;
+		list[i].data = data;
+		int k = list[size - 1].cur;
+		if (index == 0) {
+			list[size - 1].cur = i;
+		}
+		for (int j = 0; j < index; j++) {
+			k = list[k].cur;
+		}
+		list[i].cur = list[k].cur;
+		list[k].cur = i;
+		count++;
+		return true;
 	}
 
 	public boolean deleteAt(int index) {
-		// TODO Auto-generated method stub
 		return false;
 	}
 
@@ -66,19 +82,17 @@ public class StaticLinkedList implements List{
 	@Override
 	public String toString() {
 		StringBuilder sbBuilder = new StringBuilder();
-		sbBuilder.append("MAXSIZE: " + size + "\tData:");
-		// 0[date] = null, 0[cur] = 2  --> 1[data] = 10, 1[cur] =
-			
-
-		return super.toString();
+		sbBuilder.append("MAXSIZE: " + size + "\tCount:" + count + "\tData:\n");
+		int p = list[size - 1].cur;
+		for (int i = 0; i < count; i++) {
+			sbBuilder.append(list[p].data + "->");
+			p = list[p].cur;
+		}
+		sbBuilder.append("null");
+		return sbBuilder.toString();
 	}
 	
 	private int malloc() {
-		int i = list[0].cur;
-		if (i != 0) {
-			list[0].cur = list[i].cur;
-			return i;
-		}
-		return -1;
+		return list[0].cur;
 	}
 }

@@ -20,5 +20,10 @@ public class Test {
 //		System.out.println(list.count);
 		StaticLinkedList list = new StaticLinkedList();
 		System.out.println(list.size);
+		System.out.println(list.insertTo(0, 1));
+		System.out.println(list.insertTo(0, 1));
+		System.out.println(list.insertTo(0, 1));
+		System.out.println(list.insertTo(0, 10));
+		System.out.println(list);
 	}
 }
